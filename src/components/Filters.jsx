@@ -1,17 +1,19 @@
-function Filters() {
-  const handleCategoryChange = (event) => {
+function Filters(props) {
+  const { filterChanged, filterOptions } = props;
+
+  const handleFilterChange = (event) => {
     const value = event.target.value;
-    console.log("Kategorija: " + value);
+    filterChanged(value);
   }
 
   return (
     <div id="table-filters">
       <div>
-        <div className="filter-name">Kategorija:</div>
-        <select name="kategorija" onChange={handleCategoryChange}>
-          <option value="">All</option>
-          <option value="red">Red</option>
-          <option value="green">Green</option>
+        <div className="filter-name">{filterOptions.filterName}:</div>
+        <select name="kategorija" onChange={handleFilterChange}>
+          {filterOptions.options.map((option) =>
+            <option value={option.value} key={option.value}>{option.label}</option>
+          )}
         </select>
       </div>
     </div>

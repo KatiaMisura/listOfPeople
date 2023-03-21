@@ -7,7 +7,7 @@ function Table(props) {
     <div id="user-table">
       <TableHeader />
       {contacts.map((contact) => {
-        return <TableRow contact={contact} key={contact.id} />;
+        return <TableRow contact={contact} deleteContact={props.deleteContact} key={contact.id} />;
       })}
     </div>
   );
