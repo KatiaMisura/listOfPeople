@@ -4,7 +4,7 @@ import { contacts } from "./data/contacts";
 import Table from "./components/Table";
 import Filters from "./components/Filters";
 import { useState } from "react";
-import { categoryOptions, cityOptions } from "./data/filterOptions";
+import { categoryOptions, cityOptions, years } from "./data/filterOptions";
 
 function App() {
   const [contactList, setContactList] = useState(contacts);

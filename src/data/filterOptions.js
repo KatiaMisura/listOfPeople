@@ -16,3 +16,11 @@ export const cityOptions = {
     { value: "Osjek", label: "Osjek" },
   ],
 };
+
+const currentYear = new Date().getFullYear();
+const starYear = currentYear - 100;
+export const years = [];
+
+for (let year = currentYear; year > starYear; year -= 10) {
+  years.push(year);
+}
