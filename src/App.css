@@ -64,3 +64,15 @@ option[value="green"] {
 #table-filters .filter-name {
   width: 100px;
 }
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+}
+
+.input-form > * {
+  margin-bottom: 5px;
+  width: fit-content;
+}
