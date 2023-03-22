@@ -3,13 +3,25 @@ import "./App.css";
 import { contacts } from "./data/contacts";
 import Table from "./components/Table";
 import Filters from "./components/Filters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { categoryOptions, cityOptions, years } from "./data/filterOptions";
 
 function App() {
   const [contactList, setContactList] = useState(contacts);
+  const [displayedContacts, setDisplayedContacts] = useState(contactList);
   const [categoryFilter, setCategoryFilter] = useState("");
   const [cityFilter, setCityFilter] = useState("");
+
+  useEffect(() => {
+    const newContactList = contactList.filter((contact) => {
+      const isCategoryShown =
+        categoryFilter === "" || categoryFilter === contact.category;
+      const isCityShown = cityFilter === "" || cityFilter === contact.city;
+
+      return isCategoryShown && isCityShown;
+    });
+    setDisplayedContacts(newContactList);
+  }, [contactList, categoryFilter, cityFilter]);
 
   const handleCategoryChanged = (value) => {
     setCategoryFilter(value);
@@ -33,7 +45,7 @@ function App() {
         filterOptions={categoryOptions}
       />
       <Filters filterChanged={handleCityChanged} filterOptions={cityOptions} />
-      <Table contacts={contactList} deleteContact={deleteContact} />
+      <Table contacts={displayedContacts} deleteContact={deleteContact} />
     </div>
   );
 }
