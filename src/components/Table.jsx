@@ -11,7 +11,8 @@ function Table() {
   const { 
     displayedContacts,
     setCityFilter,
-    setCategoryFilter
+    setCategoryFilter,
+    setYearFilter
   } = useContext(AppContext);
 
   return (
@@ -26,7 +27,7 @@ function Table() {
         filterOptions={cityOptions}
       />
       <Filters
-        filterChanged={setCityFilter}
+        filterChanged={setYearFilter}
         filterOptions={yearOptions}
       />
       <div id="user-table">

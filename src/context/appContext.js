@@ -9,6 +9,7 @@ export function AppContextProvider(Component) {
     const [displayedContacts, setDisplayedContacts] = useState(contactList);
     const [categoryFilter, setCategoryFilter] = useState("");
     const [cityFilter, setCityFilter] = useState("");
+    const [yearFilter, setYearFilter] = useState("");
 
     useEffect(() => {
       const newContactList = contactList.filter((contact) => {
@@ -16,10 +17,13 @@ export function AppContextProvider(Component) {
           categoryFilter === "" || categoryFilter === contact.category;
         const isCityShown = cityFilter === "" || cityFilter === contact.city;
 
-        return isCategoryShown && isCityShown;
+        const yearOfBirth = new Date(contact.dateOfBirth).getFullYear();
+        const isYearShown = yearFilter === "" || yearOfBirth < yearFilter;
+
+        return isCategoryShown && isCityShown && isYearShown;
       });
       setDisplayedContacts(newContactList);
-    }, [contactList, categoryFilter, cityFilter]);
+    }, [contactList, categoryFilter, cityFilter, yearFilter]);
 
     const deleteContact = (contactId) => {
       const newList = contactList.filter((contact) => {
@@ -41,6 +45,7 @@ export function AppContextProvider(Component) {
           deleteContact,
           setCategoryFilter,
           setCityFilter,
+          setYearFilter,
         }}
       >
         <Component {...props} />
