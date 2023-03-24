@@ -1,14 +1,18 @@
-
-import { useContext } from 'react';
-import { DeleteContext } from '../App';
+import { useContext } from "react";
+import { AppContext } from "../context/appContext";
+import { categoryList } from "../data/filterOptions";
 
 function TableRow(props) {
   const { contact } = props;
-  const deleteFunction = useContext(DeleteContext);
+  const { deleteContact } = useContext(AppContext);
 
   const handleDelete = () => {
-    deleteFunction(contact.id);
+    deleteContact(contact.id);
   }
+
+  const categoryColor = categoryList.find(
+    category => category.value === contact.category
+  ).color;
 
   return (
     <div className="table-row">
@@ -18,11 +22,11 @@ function TableRow(props) {
       <div>{contact.number}</div>
       <div>{contact.address}</div>
       <div>{contact.city}</div>
-      <div className={'category ' + contact.category}>
-        <div></div>
+      <div className={'category'}>
+        <div style={{backgroundColor: categoryColor}}></div>
       </div>
       <div>
-        <button onClick={handleDelete} >Izbriši</button>
+        <button onClick={handleDelete}>Izbriši</button>
       </div>
     </div>
   );

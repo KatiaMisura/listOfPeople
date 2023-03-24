@@ -1,64 +1,81 @@
-import { Osoba } from '../data/contacts';
+import { Contact } from '../data/contacts';
 import Filters from './Filters';
-import { createCategoryoptions } from '../data/filterOptions';
+import { createCityOptions, createCategoryOptions } from '../data/filterOptions';
 import moduleStyles from "../styles/form.module.css";
+import { useContext } from 'react';
+import { AppContext } from '../context/appContext';
+import { Link, useNavigate } from 'react-router-dom';
+import routes from '../data/routes';
 
-function Form(props) {
+function Form() {
+  const { createContact } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const formDataNames = [
+    "name",
+    "surname",
+    "dateOfBirth",
+    "number",
+    "address",
+    "city",
+    "category"
+  ];
+
   const onSave = (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget);
-    const ime = formData.get("ime");
-    const prezime = formData.get("prezime");
-    const datumRođenja = formData.get("dateOfBirth");
-    const broj = formData.get("number");
-    const kategorija = formData.get("kategorija");
-    const adresa = formData.get("address");
-    const grad = formData.get("city");
+    event.preventDefault();
 
-    const osoba = new Osoba(
-      ime,
-      prezime,
-      datumRođenja,
-      broj,
-      adresa,
-      grad,
-      kategorija
-    );
-    props.createContact(osoba);
+    const formData = new FormData(event.currentTarget);
+    const dataValues = formDataNames.map(value => formData.get(value));
+
+    const dataMissing = dataValues.some(value => !value);
+    if (dataMissing) {
+      alert("Ispunite sva polja");
+      return;
+    }
+
+    const contact = new Contact(...dataValues);
+    createContact(contact);
+
+    navigate(routes.home);
     event.currentTarget.reset();
   }
 
   return (
-    <form className={"input-form " + moduleStyles["form-background"]} onSubmit={onSave}>
-      <div>
-        <input type="text" name="ime"></input>
-        <span>Ime</span>
-      </div>
-      <div>
-        <input type="text" name="prezime" ></input>
-        <span>Prezime</span>
-      </div>
-      <div>
-        <input type="date" name="dateOfBirth" ></input>
-        <span>Datum Rođenja</span>
-      </div>
-      <div>
-        <input type="number" name="number" ></input>
-        <span>Broj</span>
-      </div>
-      <div>
-        <input type="text" name="address" ></input>
-        <span>Adresa</span>
-      </div>
-      <div>
-        <input type="text" name="city" ></input>
-        <span>Grad</span>
-      </div>
-      <Filters
-          filterOptions={createCategoryoptions}
-      />
-      <button type="submit">Save</button>
-    </form>
+    <div className={moduleStyles["form-background"]}>
+      <Link to={routes.home}>Nazad</Link>
+      <form className={"input-form"} onSubmit={onSave}>
+        <div>
+          <span>Ime</span>
+          <input type="text" name="name"></input>
+        </div>
+        <div>
+          <span>Prezime</span>
+          <input type="text" name="surname" ></input>
+
+        </div>
+        <div>
+          <span>Datum Rođenja</span>
+          <input type="date" name="dateOfBirth" ></input>
+        </div>
+        <div>
+          <span>Broj</span>
+          <input type="number" name="number" ></input>
+        </div>
+        <div>
+          <span>Adresa</span>
+          <input type="text" name="address" ></input>
+        </div>
+        <Filters
+            name={"city"}
+            filterOptions={createCityOptions}
+        />
+        <Filters
+            name={"category"}
+            filterOptions={createCategoryOptions}
+        />
+        <button type="submit">Spremi</button>
+      </form>
+    </div>
   );
 }
 

@@ -1,3 +1,10 @@
 .form-background {
   background-color: gray;
+  color: white;
+  width: fit-content;
+  padding: 10px;
+}
+
+.form-background a{
+  color: white;
 }

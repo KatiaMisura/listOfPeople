@@ -1,10 +1,10 @@
 // Funkcija za stvaranje jedinstvenog identifikatora (skoro pa jedinstven, biramo nasumični broj od 0 do 10000000)
-function dohvatiNasumičniIdentifikator() {
+function getRandomNumber() {
   return Math.floor(Math.random() * 10000000);
 }
 
-// Novi tip podatka koji predstavlja osobu
-export function Osoba(
+// Novi tip podatka koji predstavlja kontakt
+export function Contact(
   name,
   lastName,
   dateOfBirth,
@@ -22,50 +22,50 @@ export function Osoba(
   this.category = category;
 
   // Pri kreiranju osobe svaka osoba dobije svoj jedinstveni identifikator
-  this.id = dohvatiNasumičniIdentifikator();
+  this.id = getRandomNumber();
 }
 
 export const contacts = [
-  new Osoba(
+  new Contact(
     "Ivo",
     "ivić",
-    "12.05.1999",
+    "1995-10-16",
     "156181554",
     "Moja Kuca 1",
     "Split",
     "red"
   ),
-  new Osoba(
+  new Contact(
     "Ante",
     "Lukač",
-    "12.05.1959",
+    "1989-03-23",
     "15132131554",
     "Moja Kuca 2",
     "Split",
     "green"
   ),
-  new Osoba(
+  new Contact(
     "Josip",
     "Horvat",
-    "12.05.1989",
+    "1968-08-30",
     "153231554",
     "Moja Kuca 3",
     "Zagreb",
     "green"
   ),
-  new Osoba(
+  new Contact(
     "Luka",
     "Horvat",
-    "12.05.1699",
+    "1993-04-05",
     "15313554",
     "Moja Kuca 4",
     "Osjek",
     "red"
   ),
-  new Osoba(
+  new Contact(
     "mate",
     "Horvat",
-    "12.05.1969",
+    "2001-03-07",
     "1561232554",
     "Moja Kuca 5",
     "Split",

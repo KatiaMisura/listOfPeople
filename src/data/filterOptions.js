@@ -1,32 +1,48 @@
-const options = [
-    { value: "red", label: "Red" },
-    { value: "green", label: "Green" },
+const defaultOption = { value: "", label: "Svi" };
+
+export const categoryList = [
+  { value: "red", label: "Crveno", color: "#ff0000" },
+  { value: "green", label: "Zeleno", color: "#00ff00" },
+  { value: "blue", label: "Plavo", color: "#0000ff" },
+  { value: "yellow", label: "Žuto", color: "#ffff00" },
+  { value: "purple", label: "Ljubičasto", color: "#ff00ff" },
 ];
 
-export const createCategoryoptions = {
-    filterName: "Kategorija",
-    options: options,
+export const cityList = [
+  { value: "Split", label: "Split" },
+  { value: "Zagreb", label: "Zagreb" },
+  { value: "Osjek", label: "Osjek" },
+];
+
+export const createCategoryOptions = {
+  filterName: "Kategorija",
+  options: categoryList,
 };
 
 export const categoryOptions = {
-    filterName: "Kategorija",
-    options: [{ value: "", label: "All" }, ...options],
+  ...createCategoryOptions,
+  options: [defaultOption, ...categoryList],
+};
+
+export const createCityOptions = {
+  filterName: "Grad",
+  options: cityList,
 };
 
 export const cityOptions = {
-    filterName: "Grad",
-    options: [
-        { value: "", label: "All" },
-        { value: "Split", label: "Split" },
-        { value: "Zagreb", label: "Zagreb" },
-        { value: "Osjek", label: "Osjek" },
-    ],
+  ...createCityOptions,
+  options: [defaultOption, ...cityList],
 };
 
 const currentYear = new Date().getFullYear();
 const starYear = currentYear - 100;
-export const years = [];
+export const yearOptionList = [];
 
 for (let year = currentYear; year > starYear; year -= 10) {
-    years.push(year);
+  yearOptionList.push({ value: year, label: year });
 }
+
+export const yearOptions = {
+  filterName: "Date of birth",
+  options: [defaultOption, ...yearOptionList],
+};
