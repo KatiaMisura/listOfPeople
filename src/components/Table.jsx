@@ -16,7 +16,7 @@ function Table() {
   } = useContext(AppContext);
 
   return (
-    <div>
+    <div className="user-table-container">
       <Link to={routes.form}>Stvori novi kontakt</Link>
       <Filters
         filterChanged={setCategoryFilter}

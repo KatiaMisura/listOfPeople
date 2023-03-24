@@ -54,7 +54,7 @@ function Form() {
 
         </div>
         <div>
-          <span>Datum Rođenja</span>
+          <span>Datum rođenja</span>
           <input type="date" name="dateOfBirth" ></input>
         </div>
         <div>

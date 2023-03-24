@@ -7,9 +7,11 @@ function Filters(props) {
   const handleFilterChange = (event) => {
     const value = event.target.value;
 
-    const option = filterOptions.options.find(option => option.value === value);
+    const option = filterOptions.options.find(
+      option => option.value === value
+    );
 
-    if(option) setSelectColor(option.color);
+    if (option) setSelectColor(option.color);
 
     filterChanged && filterChanged(value);
   }
@@ -17,13 +19,15 @@ function Filters(props) {
   return (
     <div id="table-filters">
       <div className="filter-name">{filterOptions.filterName}:</div>
-      <select name={name} onChange={handleFilterChange} style={{backgroundColor: selectColor}}>
+      <select
+        name={name}
+        onChange={handleFilterChange}
+        style={{backgroundColor: selectColor}}>
         {filterOptions.options.map((option) =>
           <option
             style={{backgroundColor: option.color}}
             value={option.value}
-            key={option.value}
-          >
+            key={option.value}>
               {option.label}
           </option>
         )}

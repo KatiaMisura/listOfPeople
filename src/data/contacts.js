@@ -69,6 +69,6 @@ export const contacts = [
     "1561232554",
     "Moja Kuca 5",
     "Split",
-    "red"
+    "purple"
   ),
 ];
