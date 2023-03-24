@@ -1,9 +1,13 @@
 
+import { useContext } from 'react';
+import { DeleteContext } from '../App';
+
 function TableRow(props) {
-  const { contact, deleteContact } = props;
+  const { contact } = props;
+  const deleteFunction = useContext(DeleteContext);
 
   const handleDelete = () => {
-    deleteContact(contact.id);
+    deleteFunction(contact.id);
   }
 
   return (

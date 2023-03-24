@@ -3,7 +3,7 @@ function Filters(props) {
 
   const handleFilterChange = (event) => {
     const value = event.target.value;
-    filterChanged(value);
+    filterChanged && filterChanged(value);
   }
 
   return (
