@@ -11,6 +11,8 @@ export function AppContextProvider(Component) {
     const [cityFilter, setCityFilter] = useState("");
     const [yearFilter, setYearFilter] = useState("");
 
+    // https://server-app-git-main-ptrutanic.vercel.app/api/contacts
+
     useEffect(() => {
       const newContactList = contactList.filter((contact) => {
         const isCategoryShown =
