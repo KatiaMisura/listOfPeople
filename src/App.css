@@ -12,7 +12,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 50px 90px 140px 130px 200px 90px 100px 80px 80px;
+  grid-template-columns: 80px 90px 140px 130px 200px 90px 100px 80px 80px;
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid;
