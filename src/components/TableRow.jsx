@@ -1,17 +1,20 @@
 import { useContext } from "react";
 import { AppContext } from "../context/appContext";
 import { categoryList } from "../data/filterOptions";
+import { useNavigate } from "react-router-dom";
+import routes from "../data/routes";
 
 function TableRow(props) {
   const { contact } = props;
   const { deleteContact } = useContext(AppContext);
+  const navigate = useNavigate();
+  
+  const handleDetails = () => {
+    navigate(`${routes.details}/${contact.id}`);
+  }
 
   const handleDelete = () => {
     deleteContact(contact.id);
-  }
-
-  const handleDetails = () => {
-    // Preusmjeri na stranicu s detaljima
   }
 
   const categoryColor = categoryList.find(

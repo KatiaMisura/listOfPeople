@@ -8,7 +8,7 @@ const Application = AppContextProvider(App);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Application />
-  </React.StrictMode>
+    <React.StrictMode>
+        <Application />
+    </React.StrictMode>
 );
