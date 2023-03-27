@@ -10,6 +10,10 @@ function TableRow(props) {
     deleteContact(contact.id);
   }
 
+  const handleDetails = () => {
+    // Preusmjeri na stranicu s detaljima
+  }
+
   const categoryColor = categoryList.find(
     category => category.value === contact.category
   ).color;
@@ -24,6 +28,9 @@ function TableRow(props) {
       <div>{contact.city}</div>
       <div className={'category'}>
         <div style={{backgroundColor: categoryColor}}></div>
+      </div>
+      <div>
+        <button onClick={handleDetails}>Detalji</button>
       </div>
       <div>
         <button onClick={handleDelete}>Izbriši</button>
