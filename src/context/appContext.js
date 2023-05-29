@@ -52,6 +52,16 @@ export function AppContextProvider(Component) {
       return contact;
     };
 
+    const updateContact = (contact) => {
+      const newList = contactList.map((current) => {
+       // if(current.id === contact.id) return contact;
+       // return current;
+        return current.id === contact.id ? contact : current;
+    });
+    setContactList(newList);
+
+  };
+
     return (
       <AppContext.Provider
         value={{
@@ -62,6 +72,7 @@ export function AppContextProvider(Component) {
           setCityFilter,
           setYearFilter,
           findById,
+          updateContact,
         }}
       >
         <Component {...props} />

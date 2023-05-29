@@ -1,11 +1,13 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/appContext';
+import routes from '../data/routes';
 
 function Details() {
-  const { findById } = useContext(AppContext);
+  const { findById, updateContact } = useContext(AppContext);
   const [contact, setContact] = useState({});
-  let routeParams = useParams();
+  let routeParams = useParams()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const id = routeParams.id;
@@ -23,7 +25,8 @@ function Details() {
   }
 
   const handleSave = () => {
-    // Save changes
+    updateContact(contact);
+    navigate(routes.home);
   }
 
   return (
